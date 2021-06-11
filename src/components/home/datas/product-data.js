@@ -2,7 +2,8 @@ const productData = [
   {
     name: 'Standard car',
     initialePrice: 15,
-    levelUpPrice: 50,
+    totalPriceSpent: 0,
+    upgradePrice: 50,
     image: 'https://image.flaticon.com/icons/png/512/2882/2882051.png'
   },
   {
