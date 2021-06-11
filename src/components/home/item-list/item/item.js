@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProgressBar from './progress-bar';
 
-const Item = ({ item }) => {
-  const { name, price, image } = item;
+const Item = ({ item, money, setMoney }) => {
+  const {
+    name, initialePrice, levelUpPrice, image
+  } = item;
+
+  const [currentPrice, setCurrentprice] = useState(initialePrice);
+
+  const GainMoney = () => {
+    setMoney(money + currentPrice);
+  };
+
+  const LevelUp = () => {
+    if (money >= levelUpPrice) {
+      setMoney(money - levelUpPrice);
+      setCurrentprice(currentPrice * 2);
+    }
+  };
 
   return (
     <div className="card" style={{ width: '18rem' }}>
-      <img src={image} className="card-img-top" alt="car" />
+      <button type="button" className="btn btn-light" onClick={GainMoney}>
+        <img src={image} className="card-img-top" alt="car" />
+      </button>
       <div className="card-body">
-        <h3 className="card-title">{`${name} : $${price}`}</h3>
+        <h3 className="card-title">{`${name} : $${currentPrice}`}</h3>
         <ProgressBar />
-        <span className="btn btn-primary">Click</span>
+        <button type="button" className="btn btn-primary" onClick={(LevelUp)}>{`Level up ($${levelUpPrice})`}</button>
       </div>
     </div>
   );

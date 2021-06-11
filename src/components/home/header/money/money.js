@@ -1,8 +1,8 @@
 import React from 'react';
 
-const Money = () => (
+const Money = ({ money }) => (
   <div className="price-container">
-    <div className="price mr-5">$0</div>
+    <div className="price mr-5">{`$${money}`}</div>
   </div>
 );
 

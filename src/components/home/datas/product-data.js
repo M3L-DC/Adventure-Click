@@ -1,22 +1,26 @@
 const productData = [
   {
     name: 'Standard car',
-    price: 15,
+    initialePrice: 15,
+    levelUpPrice: 50,
     image: 'https://image.flaticon.com/icons/png/512/2882/2882051.png'
   },
   {
     name: 'Little car',
-    price: 30,
+    initialePrice: 30,
+    levelUpPrice: 500,
     image: 'https://image.flaticon.com/icons/png/512/575/575703.png'
   },
   {
     name: 'Old car',
-    price: 55,
+    initialePrice: 55,
+    levelUpPrice: 5000,
     image: 'https://image.flaticon.com/icons/png/512/3089/3089803.png'
   },
   {
     name: 'Luxury car',
-    price: 100,
+    initialePrice: 100,
+    levelUpPrice: 50000,
     image: 'https://image.flaticon.com/icons/png/512/1553/1553981.png'
   }
 ];
