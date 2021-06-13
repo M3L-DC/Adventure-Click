@@ -14,7 +14,6 @@ const Item = ({ item, money, setMoney }) => {
   const GainMoney = () => {
     setMoney(money + currentPrice);
     setTotalSpent(currentPrice + totalValSpent);
-    console.log(totalValSpent);
     setprogressVal((totalValSpent * 100) / levelUpPrice);
   };
 
@@ -28,22 +27,24 @@ const Item = ({ item, money, setMoney }) => {
   };
 
   return (
-    <div className="card" style={{ width: '18rem' }}>
-      <button type="button" className="btn btn-light" onClick={GainMoney}>
-        <img src={image} className="card-img-top" alt="car" />
-      </button>
-      <div className="card-body">
-        <h3 className="card-title">{`${name} : $${currentPrice}`}</h3>
-        <div className="text-center">
-          <Col>
-            <div className="progress mb-2 text-center">
-              <div className="progress-bar bg-dark" role="progressbar" style={{ width: progressVal }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> </div>
-            </div>
-          </Col>
+    <Col>
+      <div className="card" style={{ width: '18rem' }}>
+        <button type="button" className="btn btn-light" onClick={GainMoney}>
+          <img src={image} className="card-img-top" alt="car" />
+        </button>
+        <div className="card-body">
+          <h3 className="card-title">{`${name} : $${currentPrice}`}</h3>
+          <div className="text-center">
+            <Col>
+              <div className="progress mb-2 text-center">
+                <div className="progress-bar bg-dark" role="progressbar" style={{ width: progressVal }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> </div>
+              </div>
+            </Col>
+          </div>
+          <button type="button" className="btn btn-primary" onClick={(LevelUp)}>{`Level up ($${levelUpPrice})`}</button>
         </div>
-        <button type="button" className="btn btn-primary" onClick={(LevelUp)}>{`Level up ($${levelUpPrice})`}</button>
       </div>
-    </div>
+    </Col>
   );
 };
 

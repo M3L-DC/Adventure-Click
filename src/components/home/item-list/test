@@ -1,0 +1,36 @@
+import React from 'react';
+
+const UnlockNewItem = ({ items, money, setMoney }) => {
+  let item = items.find((p) => !p.unlocked);
+
+  const UnlockItem = () => {
+    item.unlocked = true;
+    setMoney(money - item.unlockedPrice);
+    item = items.find((p) => !p.unlocked);
+  };
+
+  return item ? (
+    <div className="mt-5">
+      <button
+        disabled={money < item.unlockedPrice}
+        type="button"
+        className="btn btn-secondary btn-lg btn-block"
+        onClick={UnlockItem}
+      >
+        {`Unlock new item ($${item.unlockedPrice})`}
+      </button>
+    </div>
+  ) : (
+    <div>
+      <button
+        disabled
+        type="button"
+        className="btn btn-secondary btn-lg btn-block"
+      >
+        No product left to unlock
+      </button>
+    </div>
+  );
+};
+
+export default UnlockNewItem;
