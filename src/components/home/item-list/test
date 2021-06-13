@@ -1,36 +1,35 @@
-import React from 'react';
+<div className="text-center">
+            <Col>
+              <div className="progress mb-2 text-center">
+                <div className="progress-bar bg-dark" role="progressbar" style={{ width: progressVal }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> </div>
+              </div>
+            </Col>
+          </div>
 
-const UnlockNewItem = ({ items, money, setMoney }) => {
-  let item = items.find((p) => !p.unlocked);
 
-  const UnlockItem = () => {
-    item.unlocked = true;
-    setMoney(money - item.unlockedPrice);
-    item = items.find((p) => !p.unlocked);
+
+
+
+          const {
+    name, initialePrice, totalPriceSpent, upgradePrice, image
+  } = item;
+
+  const [progressVal, setprogressVal] = useState(0);
+  const [currentPrice, setCurrentprice] = useState(initialePrice);
+  const [levelUpPrice, setlevelUpVal] = useState(upgradePrice);
+  const [totalValSpent, setTotalSpent] = useState(totalPriceSpent);
+
+  const GainMoney = () => {
+    setMoney(money + currentPrice);
+    setTotalSpent(currentPrice + totalValSpent);
+    setprogressVal((totalValSpent * 100) / levelUpPrice);
   };
 
-  return item ? (
-    <div className="mt-5">
-      <button
-        disabled={money < item.unlockedPrice}
-        type="button"
-        className="btn btn-secondary btn-lg btn-block"
-        onClick={UnlockItem}
-      >
-        {`Unlock new item ($${item.unlockedPrice})`}
-      </button>
-    </div>
-  ) : (
-    <div>
-      <button
-        disabled
-        type="button"
-        className="btn btn-secondary btn-lg btn-block"
-      >
-        No product left to unlock
-      </button>
-    </div>
-  );
-};
-
-export default UnlockNewItem;
+  const LevelUp = () => {
+    if (money >= levelUpPrice) {
+      setMoney(money - levelUpPrice);
+      setCurrentprice(currentPrice * 2);
+      setlevelUpVal(levelUpPrice * 2);
+      setprogressVal(0);
+    }
+  };

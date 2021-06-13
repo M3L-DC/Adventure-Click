@@ -2,27 +2,30 @@ import React, { useState } from 'react';
 import { Col } from 'react-bootstrap';
 
 const Item = ({ item, money, setMoney }) => {
-  const {
-    name, initialePrice, totalPriceSpent, upgradePrice, image
-  } = item;
+  const { name, image } = item;
 
-  const [progressVal, setprogressVal] = useState(0);
-  const [currentPrice, setCurrentprice] = useState(initialePrice);
-  const [levelUpPrice, setlevelUpVal] = useState(upgradePrice);
-  const [totalValSpent, setTotalSpent] = useState(totalPriceSpent);
+  const [currentPrice, setCurrentprice] = useState(item.initialePrice);
+  const [upgradePrice, setlevelUpVal] = useState(item.upgradePrice);
+  const [totalPriceSpent, setTotalSpent] = useState(item.totalPriceSpent);
+
+  const computePercentage = () => {
+    const value = (money * 100) / upgradePrice;
+    return value > 100 ? 100 : value;
+  };
+
+  let percentage = computePercentage();
 
   const GainMoney = () => {
     setMoney(money + currentPrice);
-    setTotalSpent(currentPrice + totalValSpent);
-    setprogressVal((totalValSpent * 100) / levelUpPrice);
+    setTotalSpent(currentPrice + totalPriceSpent);
+    percentage = computePercentage();
   };
 
   const LevelUp = () => {
-    if (money >= levelUpPrice) {
-      setMoney(money - levelUpPrice);
+    if (money >= upgradePrice) {
+      setMoney(money - upgradePrice);
       setCurrentprice(currentPrice * 2);
-      setlevelUpVal(levelUpPrice * 2);
-      setprogressVal(0);
+      setlevelUpVal(upgradePrice * 2);
     }
   };
 
@@ -34,14 +37,19 @@ const Item = ({ item, money, setMoney }) => {
         </button>
         <div className="card-body">
           <h3 className="card-title">{`${name} : $${currentPrice}`}</h3>
-          <div className="text-center">
-            <Col>
-              <div className="progress mb-2 text-center">
-                <div className="progress-bar bg-dark" role="progressbar" style={{ width: progressVal }} aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"> </div>
-              </div>
-            </Col>
+          <div className="progress mb-2">
+            <div
+              className="progress-bar bg-dark"
+              role="progressbar"
+              style={{ width: `${percentage}%` }}
+              aria-valuenow={percentage}
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <span className="invisible">{`${percentage.toFixed(0)}%`}</span>
+            </div>
           </div>
-          <button type="button" className="btn btn-primary" onClick={(LevelUp)}>{`Level up ($${levelUpPrice})`}</button>
+          <button type="button" className="btn btn-primary" onClick={(LevelUp)}>{`Level up ($${upgradePrice})`}</button>
         </div>
       </div>
     </Col>

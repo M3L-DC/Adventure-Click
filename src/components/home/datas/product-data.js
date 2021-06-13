@@ -12,6 +12,7 @@ const productData = [
     name: 'Little car',
     initialePrice: 30,
     levelUpPrice: 500,
+    upgradePrice: 505,
     unlocked: false,
     unlockedPrice: 100,
     image: 'https://image.flaticon.com/icons/png/512/575/575703.png'
@@ -20,6 +21,7 @@ const productData = [
     name: 'Old car',
     initialePrice: 55,
     levelUpPrice: 5000,
+    upgradePrice: 1005,
     unlocked: false,
     unlockedPrice: 1260,
     image: 'https://image.flaticon.com/icons/png/512/3089/3089803.png'
@@ -28,6 +30,7 @@ const productData = [
     name: 'Luxury car',
     initialePrice: 100,
     levelUpPrice: 50000,
+    upgradePrice: 50045,
     unlocked: false,
     unlockedPrice: 10580,
     image: 'https://image.flaticon.com/icons/png/512/1553/1553981.png'
